@@ -12,12 +12,31 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style type="text/css">
+        	#controls{
+			    transition: 2s;
+			}
+			#map{
+				transition: 2s;
+			}
+			#createfacilityform{
+				transition: 2s;
+			}
+        </style>
     </head>
     <body>
         <div id="controls">
+            <div style="display: flex;">
             <a href="/">
-                <h2 id="titletext">Datatura</h2>
+                <h2 id="titletext">< Dataura</h2> 
             </a>
+            <div id='arielle' style="margin-left: auto; margin-right: 0; margin-top: 20px;">
+            <button id='cha' class="hamburger hamburger--arrow" type="button" >
+			  <span class="hamburger-box">
+			    <span class="hamburger-inner"></span>
+			  </span>
+			</button>
+			</div>
             <div id="selection">
             
             </div>
@@ -27,5 +46,35 @@
         {% load static %}
         <script src="{% static "frontend/map.js" %}"></script>
         <link href="{% static "frontend/map.css" %}" rel='stylesheet' />
+                <link rel="stylesheet" type="text/css" href="{% static "frontend/hamburgers.css" %}">
+        <script type="text/javascript">
+        	var hambelement= document.getElementById('cha')
+    		var elementShowing = true; // declare the variable that tracks the state
+			function clickHandler(){ // declare a function that updates the state
+
+			  if (elementShowing){
+			  	close();
+			  	elementShowing = false;
+			  }else{
+			  	open();
+			  	elementShowing = true;
+			  }
+			}
+
+			var element = document.getElementById('arielle'); // grab a reference to your element
+			element.addEventListener('click', clickHandler); // associate the function above with the click event
+			function close(){
+				hambelement.className += ' is-active'
+				document.getElementById('controls').style.marginLeft= '-25vw';
+				document.getElementById('map').style.width='95vw';
+				document.getElementById('createfacilityform').style.opacity = "0";
+			}
+			function open(){
+				hambelement.className = 'hamburger hamburger--arrow';
+				document.getElementById('controls').style.marginLeft= '0vw';
+				document.getElementById('map').style.width='70vw';
+				document.getElementById('createfacilityform').style.opacity = "1";
+			}
+    	</script>
     </body>
 </html>
